@@ -89,7 +89,8 @@ func NewKazooFromConnectionString(connectionString string, conf *Config) (*Kazoo
 // Brokers returns a map of all the brokers that make part of the
 // Kafka cluster that is regeistered in Zookeeper.
 func (kz *Kazoo) Brokers() (map[int32]string, error) {
-	root := fmt.Sprintf("%s/brokers/ids", kz.conf.Chroot)
+	// root := fmt.Sprintf("%s/brokers/ids", kz.conf.Chroot)
+	root := fmt.Sprintf("%s/brokers", kz.conf.Chroot)
 	children, _, err := kz.conn.Children(root)
 	if err != nil {
 		return nil, err
